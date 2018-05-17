@@ -28,7 +28,6 @@ navbar-links:
     - FIX API: "https://github.com/fxcm/FIXAPI/"
     - Java API: "https://github.com/fxcm/JavaAPI/"
     - Forex Connect API: "https://github.com/fxcm/ForexConnectAPI/"
-	- FXCMPY: "https://www.fxcm.com/fxcmpy/"
   FXCM home: "https://www.fxcm.com/uk/"
 
 # Image to show in the navigation bar - image must be a square (width = height)
