@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="en-us">
+---
+layout: base
+---
 
-{% include head.html %}
+<div class="intro-header"></div>
 
-<body>
-    
-    <div class="page-wrap">
-        {% include header.html %}
-        <main>
-            {{ content }}
-        </main>
-    </div>
-    
-    {% include footer.html %}
-
-    <script src="/assets/js/vendor/jquery.min.js"></script>
-    <script src="/assets/js/vendor/semantic.min.js"></script>
-    <script type="/assets/js/main.js"></script>
-</body>
-
-</html>
+<div role="main" class="container">
+  {{ content }}
+</div>
