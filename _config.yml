@@ -17,7 +17,7 @@ baseurl: ""
 title: FXCM Rest API
 
 # Short description of your site
-description: A virtual proof that name is awesome!
+description: FXCM Rest API!
 
 # --- Navigation bar options --- #
 
@@ -99,7 +99,7 @@ share-links-active:
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"  # eg. "fxcm.com/beautiful-jekyll"
+url-pretty: "fxcm.com"  # eg. "fxcm.com/beautiful-jekyll"
 
 # --- Web Statistics Section --- #
 

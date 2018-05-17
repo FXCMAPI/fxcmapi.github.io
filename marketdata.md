@@ -7,9 +7,11 @@ bigimg: /img/FXCMs-Best-Trading-Station.png
 
 ## Price Data:
 
-[Free sample tick data](https://github.com/fxcm/FXCMTickData)
-[Free sample candle data](https://github.com/fxcm/FXCMTimeSeriesData)
+Enjoy free access to our 26 currencies last 4 years [sample tick data](https://github.com/fxcm/FXCMTickData)
+
+Enjoy free access to our 21 currencies last 6 years [sample candle data](https://github.com/fxcm/FXCMTimeSeriesData)
 
 
 ## Orders/Sentiment/Volume:
-[Free sample data](https://github.com/fxcm/MarketData)
+
+Enjoy a free one-month sample of our [Orders/Sentiment/Volume data](https://github.com/fxcm/MarketData)
