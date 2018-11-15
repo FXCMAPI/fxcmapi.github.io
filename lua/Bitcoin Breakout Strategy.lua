@@ -39,6 +39,7 @@ end
 local ChannelPeriods;
 local LimitMultiplier;
 local gSource = nil; -- the source stream
+local ShowAlert;
 local PlaySound;
 local RecurrentSound;
 local SoundFile;
@@ -129,7 +130,7 @@ function ExtUpdate(id, source, period)
 		-- Get High and Low the First tick if Channel_High or Channel_High == 0
 		if Channel_High == 0 or Channel_Low == 0 then
 			if gSource:hasData(gSource:size()-2-ChannelPeriods) then
-				core.host:trace("Calculating Channel High/Low Values.")
+				--core.host:trace("Calculating Channel High/Low Values.")
 				-- create a range of candles
 				local range = core.rangeTo(gSource:size()-2, ChannelPeriods)
 
@@ -140,8 +141,8 @@ function ExtUpdate(id, source, period)
 				-- Updating global channel values
 				Channel_High = High
 				Channel_Low = Low
-				core.host:trace("Channel High: " .. tostring(Channel_High))
-				core.host:trace("Channel Low: " .. tostring(Channel_Low))
+				--core.host:trace("Channel High: " .. tostring(Channel_High))
+				--core.host:trace("Channel Low: " .. tostring(Channel_Low))
 			end
 		end
 		
@@ -149,6 +150,7 @@ function ExtUpdate(id, source, period)
 		if Channel_High ~= 0 and CrossedOver(instance.bid[NOW], Channel_High) == 1 then
 			-- BUY
 			if not haveTrades("B") then
+				Signal("Price ("..tostring(instance.bid[NOW])..") broke above channel ("..tostring(Channel_High).."). BUY SIGNAL.")
 				local limitprice = (instance.bid[NOW] - Channel_Low)* LimitMultiplier + instance.bid[NOW]
 				enter("B", limitprice)
 				exit("S")
@@ -160,6 +162,7 @@ function ExtUpdate(id, source, period)
 		if Channel_Low ~= 0 and CrossedUnder(instance.bid[NOW], Channel_Low) == 2 then
 			-- SELL
 			if not haveTrades("S") then
+				Signal("Price ("..tostring(instance.bid[NOW])..") broke below channel ("..tostring(Channel_Low).."). SELL SIGNAL.")
 				local limitprice = instance.bid[NOW] - (Channel_High - instance.bid[NOW])*LimitMultiplier
 				enter("S", limitprice)
 				exit("B")
@@ -314,6 +317,21 @@ function CrossedUnder (bline1, bline2)
     end
 end
 
+
+-- Signal Controller
+function Signal(Label)
+    if ShowAlert then
+        terminal:alertMessage(instance.bid:instrument(), instance.bid[NOW],  Label, instance.bid:date(NOW));
+    end
+
+    if SoundFile ~= nil then
+        terminal:alertSound(SoundFile, RecurrentSound);
+    end
+
+    if Email ~= nil then
+        terminal:alertEmail(Email, Label, profile:id() .. "(" .. instance.bid:instrument() .. ")" .. instance.bid[NOW]..", " .. Label);
+    end
+end
 
 
 
